@@ -1,36 +1,36 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-  before_actio :authenticate_user!, except: [:index, :show]
-  # GET /tweets
-  # GET /tweets.json
+  before_action :set_tweeet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
+  # GET /tweeets
+  # GET /tweeets.json
   def index
     @tweets = Tweet.all.order("created_at DESC")
     @tweet = Tweet.new
   end
 
-  # GET /tweets/1
-  # GET /tweets/1.json
+  # GET /tweeets/1
+  # GET /tweeets/1.json
   def show
   end
 
-  # GET /tweets/new
+  # GET /tweeets/new
   def new
     @tweet = current_user.tweets.build
   end
 
-  # GET /tweets/1/edit
+  # GET /tweeets/1/edit
   def edit
-    
   end
 
-  # POST /tweets
-  # POST /tweets.json
+  # POST /tweeets
+  # POST /tweeets.json
   def create
     @tweet = current_user.tweets.build(tweet_params)
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }
@@ -39,8 +39,8 @@ class TweetsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tweets/1
-  # PATCH/PUT /tweets/1.json
+  # PATCH/PUT /tweeets/1
+  # PATCH/PUT /tweeets/1.json
   def update
     respond_to do |format|
       if @tweet.update(tweet_params)
@@ -53,8 +53,8 @@ class TweetsController < ApplicationController
     end
   end
 
-  # DELETE /tweets/1
-  # DELETE /tweets/1.json
+  # DELETE /tweeets/1
+  # DELETE /tweeets/1.json
   def destroy
     @tweet.destroy
     respond_to do |format|
